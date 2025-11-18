@@ -1,31 +1,16 @@
-<<<<<<< HEAD
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-=======
-import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig(({ mode }) => {
-    const env = loadEnv(mode, '.', '');
-    return {
-      server: {
-        port: 3000,
-        host: '0.0.0.0',
-      },
-      plugins: [react()],
-      define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
-      },
-      resolve: {
-        alias: {
-          '@': path.resolve(__dirname, '.'),
-        }
+  server: {
+    // أثناء التطوير يمكن توجيه /api إلى vercel dev أو مباشرة إلى GAS (لكن direct => CORS)
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:3000', // إذا شغّلت `vercel dev` على الـ port هذا
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
-    };
->>>>>>> 79be20c7381f4cf655a306173812bd7122de5bca
+    }
+  }
 });
