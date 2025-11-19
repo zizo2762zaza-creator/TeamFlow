@@ -29,8 +29,7 @@ export const api = {
     callApi("addSuggestion", { proposerId, date, location, notes }),
   voteForSuggestion: (suggestionId: string, userId: string) => callApi("voteSuggestion", { id: suggestionId, voterId: userId }),
   getUpcomingMatch: () => callApi("getUpcomingMatch"),
-  getCompletedMatches: () => callApi("getCompletedMatches"),
-  getAttendance: (matchId: string) => callApi("getAttendanceByMatch", { matchId }),
+  getAttendanceByMatch: (matchId: string) => callApi("getAttendanceByMatch", { matchId }),
   setAttendance: (matchId: string, userId: string, userName: string, status: string) =>
     callApi("setAttendance", { matchId, userId, userName, status }),
   generateTeams: (matchId: string) => callApi("generateTeams", { matchId }),
