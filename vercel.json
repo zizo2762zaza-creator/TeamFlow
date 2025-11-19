@@ -1,7 +1,7 @@
 {
   "version": 2,
   "env": {
-    "VITE_GAS_URL": "https://script.google.com/macros/s/AKfycbywXNM6aisDcxRHMbKihH-zjU7tad99tT70a7hk4Le5eCpAjWt6DGGzW2Te9uulQ30A3g/exec"
+    "VITE_GAS_URL": "https://script.google.com/macros/s/AKfycbx-UlLEjXAAknWBhA5BxxTSdSBElW3zewvYRLxgEViEeS5AkGjCKtNt6PAEmTfZQSRuUg/exec"
   },
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/gas-proxy.js" }

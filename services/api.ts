@@ -22,29 +22,16 @@ async function callApi<T>(action: string, payload?: Record<string, any>): Promis
 }
 
 export const api = {
-  login: (userId: string) => callApi("login", { userId }),
+  login: (email: string) => callApi("login", { email }),
   getAllUsers: () => callApi("getAllUsers"),
   getSuggestions: () => callApi("getSuggestions"),
   addSuggestion: (proposerId: string, date: string, location: string, notes: string) =>
     callApi("addSuggestion", { proposerId, date, location, notes }),
-  voteForSuggestion: (suggestionId: string, userId: string) => callApi("voteForSuggestion", { suggestionId, userId }),
+  voteForSuggestion: (suggestionId: string, userId: string) => callApi("voteSuggestion", { id: suggestionId, voterId: userId }),
   getUpcomingMatch: () => callApi("getUpcomingMatch"),
   getCompletedMatches: () => callApi("getCompletedMatches"),
-  getAttendance: (matchId: string) => callApi("getAttendance", { matchId }),
+  getAttendance: (matchId: string) => callApi("getAttendanceByMatch", { matchId }),
   setAttendance: (matchId: string, userId: string, userName: string, status: string) =>
     callApi("setAttendance", { matchId, userId, userName, status }),
-  getMatchPreferences: (matchId: string) => callApi("getMatchPreferences", { matchId }),
-  setMatchPreferences: (matchId: string, userId: string, data: any) =>
-    callApi("setMatchPreferences", { matchId, userId, ...data }),
   generateTeams: (matchId: string) => callApi("generateTeams", { matchId }),
-  getTeamDivision: (matchId: string) => callApi("getTeamDivision", { matchId }),
-  submitTeamDivisionVote: (matchId: string, userId: string, rating: number, comment: string) =>
-    callApi("submitTeamDivisionVote", { matchId, userId, rating, comment }),
-  getMatchAwards: (matchId: string) => callApi("getMatchAwards", { matchId }),
-  submitVote: (matchId: string, voterId: string, votes: any) => callApi("submitVote", { matchId, voterId, votes }),
-  getMatchEvaluations: (matchId: string) => callApi("getMatchEvaluations", { matchId }),
-  submitMatchEvaluation: (matchId: string, userId: string, rating: number, comment: string) =>
-    callApi("submitMatchEvaluation", { matchId, userId, rating, comment }),
-  getChatMessages: () => callApi("getChatMessages"),
-  sendChatMessage: (senderId: string, senderName: string, text: string) => callApi("sendChatMessage", { senderId, senderName, text }),
 };
