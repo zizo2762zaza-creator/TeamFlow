@@ -1,5 +1,7 @@
 export async function callGAS(endpoint: string, data: any) {
-  const url = import.meta.env.VITE_GAS_URL + "?action=" + endpoint;
+  // @ts-ignore
+  // Vercel Serverless Functions use process.env, not import.meta.env
+  const url = process.env.VITE_GAS_URL + "?action=" + endpoint;
 
   const response = await fetch(url, {
     method: "POST",
