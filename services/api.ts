@@ -1,5 +1,5 @@
 // src/services/api.ts
-export const API_BASE = "https://script.googleusercontent.com/a/macros/univ-ghardaia.edu.dz/echo?user_content_key=AehSKLjPGQcb-RxTbW1dfw9pseGv4r2plG_gpYcOwazH_CY7ws6OxPZ6Xs6ik4daKBbRcWF2V5xMh5PThuEQutcxQuVO3ld82zqCJbXxsXR1xG5A7BVZEstGlD2o04RIzKxS3ceyCGEVV-YC_i8eH-cuv77UVtBn0WwZcfQ5UHCvLs0r8FeGsL79hVGLKYCZlgLs5LSN9vwI8r73HDdcnBAzQA2u3qpRLXCFW8NXeWHVXrS8EZhEnMwV53gfUAoOOt9zW4bv2DWQv-IL3Y7qriVOdTQcDlwaKOiGUTfg-nLrQKI055g0A4Nb3EGXokYdfFj23Y_Rql3Z&lib=MkqH3nlKFvmCVHncLCHSe_ZAGWePET2Hs";
+export const API_BASE = import.meta.env.VITE_GAS_URL;
 
 // wrapper
 async function callApi<T>(action: string, payload?: Record<string, any>): Promise<T> {
