@@ -1,5 +1,5 @@
 // src/services/api.ts
-export const API_BASE = import.meta.env.VITE_GAS_URL;
+export const API_BASE = "/api/gas";
 
 // wrapper
 async function callApi<T>(action: string, payload?: Record<string, any>): Promise<T> {
