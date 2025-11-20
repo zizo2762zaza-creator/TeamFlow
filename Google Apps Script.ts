@@ -67,25 +67,27 @@ function json(obj) { // تم تعديل الوظيفة لترجع الكائن �
 --------------------------------------------------- */
 
 function doGet(e) {
-  return handleCors(e, handleRequest);
+  return buildResponse(handleRequest(e));
 }
 
 function doPost(e) {
-  return handleCors(e, handleRequest);
+  return buildResponse(handleRequest(e));
 }
 
 function doOptions(e) {
-  return handleCors(e);
+  return buildResponse({});
 }
 
-function handleCors(e, handler) {
-  const response = handler ? handler(e) : {};
-  return ContentService
-    .createTextOutput(JSON.stringify(response))
-    .setMimeType(ContentService.MimeType.JSON)
-    .setHeader("Access-Control-Allow-Origin", "*")
-    .setHeader("Access-Control-Allow-Headers", "Content-Type")
-    .setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+function buildResponse(data) {
+  const response = HtmlService.createHtmlOutput(JSON.stringify(data));
+  
+  response.setMimeType(ContentService.MimeType.JSON);
+
+  response.append("<meta http-equiv='Access-Control-Allow-Origin' content='*'>");
+  response.append("<meta http-equiv='Access-Control-Allow-Methods' content='GET, POST, OPTIONS'>");
+  response.append("<meta http-equiv='Access-Control-Allow-Headers' content='Content-Type'>");
+
+  return response;
 }
 
 function handleRequest(e) {
